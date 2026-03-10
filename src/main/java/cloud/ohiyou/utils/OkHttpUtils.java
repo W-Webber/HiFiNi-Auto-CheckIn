@@ -67,10 +67,12 @@ public final class OkHttpUtils {
 
         return new OkHttpClient.Builder()
                 .dispatcher(new Dispatcher(executor))
+                .connectionPool(new okhttp3.ConnectionPool(0, 1, TimeUnit.NANOSECONDS))
                 .connectTimeout(HifiniConstants.DEFAULT_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .readTimeout(HifiniConstants.DEFAULT_READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .writeTimeout(HifiniConstants.DEFAULT_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .protocols(Collections.singletonList(Protocol.HTTP_1_1))
+                .retryOnConnectionFailure(true)
                 .build();
     }
 
