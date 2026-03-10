@@ -3,9 +3,11 @@ package cloud.ohiyou.utils;
 import cloud.ohiyou.constant.HifiniConstants;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.concurrent.*;
 
 /**
@@ -68,6 +70,7 @@ public final class OkHttpUtils {
                 .connectTimeout(HifiniConstants.DEFAULT_CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .readTimeout(HifiniConstants.DEFAULT_READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .writeTimeout(HifiniConstants.DEFAULT_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .protocols(Collections.singletonList(Protocol.HTTP_1_1))
                 .build();
     }
 
